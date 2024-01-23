@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt/Decrypt</title>
+</head>
+<body>
+    <h1>Texto Criptografado/Descriptografado</h1>
+    
+    <label for="inputText">Insira o texto:</label>
+    <input type="text" id="inputText" placeholder="Digite aqui">
+
+    <label for="operation">Escolha a operação:</label>
+    <select id="operation">
+        <option value="encrypt">Criptografar</option>
+        <option value="decrypt">Descriptografar</option>
+    </select>
+
+    <button onclick="processText()">Processar</button>
+
+    <p id="result"></p>
+
+    <button onclick="copyToClipboard()">Copiar para a Área de Transferência</button>
+
+    <script>
+        function processText() {
+            const inputText = document.getElementById('inputText').value;
+            const operation = document.getElementById('operation').value;
+            let result = '';
+
+            for (let i = 0; i < inputText.length; i++) {
+                switch (inputText[i]) {
+                    case 'e':
+                        result += 'enter';
+                        break;
+                    case 'i':
+                        result += 'imes';
+                        break;
+                    case 'a':
+                        result += 'ai';
+                        break;
+                    case 'o':
+                        result += 'ober';
+                        break;
+                    case 'u':
+                        result += 'ufat';
+                        break;
+                    default:
+                        result += inputText[i];
+                }
+            }
+
+            if (operation === 'decrypt') {
+                // Implementar a lógica de descriptografia aqui
+                // Por exemplo, substituir 'enter' por 'e'
+                result = result.replace(/enter/g, 'e');
+                result = result.replace(/imes/g, 'i');
+                result = result.replace(/ai/g, 'a');
+                result = result.replace(/ober/g, 'o');
+                result = result.replace(/ufat/g, 'u');
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+
+        function copyToClipboard() {
+            const resultText = document.getElementById('result');
+            const textArea = document.createElement('textarea');
+            textArea.value = resultText.innerText;
+
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Texto copiado para a área de transferência!');
+        }
+    </script>
+</body>
+</html>
